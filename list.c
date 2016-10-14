@@ -5,15 +5,15 @@
 typedef struct song_node{
   char name[256];
   char artist[256];
-  song_node *next;
+  struct song_node *next;
 } song_node;
 
 song_node * insert_front( song_node *current, char *n, char *art){
   song_node * newNode = (song_node *)malloc( sizeof(song_node) );
   //(*newNode).name = *n;
-  strcpy( (*newNode).name, *n);
+  strcpy( (*newNode).name, n);
   //(*newNode).artist = *art;
-  strcpy( (*newNode).artist, *art);
+  strcpy( (*newNode).artist, art);
   (*newNode).next = current;
   return newNode;
 }
@@ -21,9 +21,9 @@ song_node * insert_front( song_node *current, char *n, char *art){
 song_node * insert( song_node *current, char *n, char *art){
   song_node * newNode = (song_node *)malloc( sizeof(song_node) );
   //(*newNode).name = *n;
-  strcpy( (*newNode).name, *n);
+  strcpy( (*newNode).name, n);
   //(*newNode).artist = *art;
-  strcpy( (*newNode).artist, *art);
+  strcpy( (*newNode).artist, art);
   song_node * frs = current;
   while( strcmr( (*current).artist, (*newNode).artist ) <= 0 ){
     current = (*current).next;
@@ -45,6 +45,12 @@ void print_list( song_node * head){
 
 song_node * findSong( song_node * head, char * songName){
   while( head != 0){
-    
+    if( strcmr( songName, (*head).name ) == 0){
+      return head;
+    }else{
+      head = (*head).next;
+    }
   }
+  printf("Song Not Found\n");
+  return 0;//Cannot be found.
 }
