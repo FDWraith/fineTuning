@@ -31,6 +31,10 @@ song_node * insert( song_node *current, char *n, char *art){
 }
 
 void print_list( song_node * head){
-  
-  
+  printf("Begin: ");
+  while(head != 0){
+    printf("[%s] by %s;", *head.name, *head.artist);
+    head = *head.next;
+  }
+  printf(":End\n");
 }
