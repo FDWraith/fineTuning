@@ -29,3 +29,8 @@ song_node * insert( song_node *current, char *n, char *art){
   *newNode.next = temp;
   return frs;
 }
+
+void print_list( song_node * head){
+  
+  
+}
