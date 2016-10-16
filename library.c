@@ -16,9 +16,9 @@ void addSong( library * lib, char * songName, char * artistName){
   char firstChar = artistName[0];
   if( firstChar < 97 || firstChar > 122){
     printf("INVALID artistName\n");
-    return;
+  }else{
+    insert( (*lib).table[ firstChar - 97 ], songName, artistName);
   }
-  insert( (*lib).table[ firstChar - 97 ], songName, artistName);
 }
 
 song_node * searchSong( library * lib, char * songName){
@@ -37,15 +37,71 @@ song_node * searchArtist( library * lib, char * artistName ){
   strcpy( lowerString(artistName), artistName);
   char firstChar = artistName[0];
   if( firstChar < 97 || firstChar > 122){
-    printf("INVALID artistName\n");
-    return;
+    printf("INVALID artistName[%s]\n",artistName);
+  }else{
+    song_node * searchResult = findArtist( (*lib).table[ firstChar - 97 ], artistName );
+  //returns searchResult;
+    if(searchResult == 0){
+      printf("Artist Not Found in Library\n");
+    }
+    return searchResult;
   }
-  song_node * searchResult = findArtist( (*lib).table[ firstChar - 97 ], artistName );
-  //return searchResult;
-  if(searchResult == 0){
-    printf("Artist Not Found in Library\n");
-  }
-  return searchResult;
-  
 }
 
+void printLetter( library * lib, char letter ){
+  if( letter < 97 || letter > 122){
+    printf("INVALID letter[%c]\n",letter);
+  }else{
+    print_list( (*lib).table[ letter - 97 ]);
+  }
+}
+
+void printArtist( library * lib, char * artistName ){
+  song_node * searchResult = searchArtist( lib, artistName );
+  if( searchResult == 0 ){
+    return;//error statement in previous part.
+  }else{
+    printf("Songs by %s:\n",artistName);
+    while( strcmp( (*searchResult).artist, artistName ) == 0){
+      printf("\t[%s],\n", (*searchResult).name );
+      searchResult = (*searchResult).next;
+    }
+  }
+}
+
+void printLibrary( library * lib ){
+  char l = 97;
+  for(;l<123;l++){
+    printf("Letter '%c' List:\n",l);
+    printLetter( lib, l);
+  }
+}
+
+//NOTE: May come back to this to make it more random.
+void shuffleList( library * lib ){
+  int i =0;
+  printf("Beginning of Random Songs:");
+  for(;i<26;i++){
+    song_node * rndNode = randomNode( (*lib).table[ i ]);
+    if( rndNode != 0) {
+      printf("\t[%s] by %s\n", (*rndNode).name, (*rndNode).artist);
+    }
+  }
+}
+
+void deleteSong( library * lib, char * songName, char * artistName){
+  int i = 0;
+  for(;i<26;i++){
+    song_node * removeResult = removeSong( (*lib).table[i], songName, artistName);
+    if(removeResult != 0){
+      free(removeResult);
+    }
+  }
+}
+
+void deleteLibrary( library * lib ){
+  int i =0;
+  for(;i<26;i++){
+    freeNodes( (*lib).table[i] );
+  }
+}

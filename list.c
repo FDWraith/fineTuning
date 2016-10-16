@@ -53,12 +53,11 @@ song_node * insert( song_node *current, char *n, char *art){
 }
 
 void print_list( song_node * head){
-  printf("Begin: ");
+  printf("List of Songs:\n");
   while(head != 0){
-    printf("[%s] by %s;", (*head).name, (*head).artist);
+    printf("\t[%s] by %s,\n", (*head).name, (*head).artist);
     head = (*head).next;
   }
-  printf(":End\n");
 }
 
 song_node * findSong( song_node * head, char * songName){
@@ -116,18 +115,19 @@ void removeNode( song_node * chosen ){
   //not sure how to do this one.
 }
 
-song_node * removeSong( song_node * head, char * songName ){
+song_node * removeSong( song_node * head, char * songName, char * artistName ){
   if( head == 0){
     printf("You're in the wrong neighborhood, kid\n");
     return 0;
   }else{
     strcpy(lowerString(songName), songName);
-    if( strcmp( (*((*head).next)).name, songName) == 0 ){
+    strcpy(lowerString(artistName), artistName);
+    if( (strcmp( (*((*head).next)).name, songName) == 0) && (strcmp( (*(*head).next).artist, artistName) == 0 ) ){
       song_node *temp = (*head).next;
       (*head).next = (*temp).next;
       return temp;
     }else{
-      return removeSong( (*head).next, songName );
+      return removeSong( (*head).next, songName, artistName );
     }
   }
 }

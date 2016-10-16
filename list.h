@@ -7,5 +7,5 @@ song_node * findSong( song_node * head, char * songName);//Finds the first match
 song_node * findArtist( song_node * head, char * artistName);//Finds the first match for the artistName. Returns null if not found.
 int listLength( song_node * head );//Computes the length of the linked list. Helper function for randomNode.
 song_node * randomNode( song_node * head );//Returns a random node from the list.
-song_node * removeSong( song_node * head, char * songName);//Removes a song and returns the node. Note: The node is not freed as a result of this function.
+song_node * removeSong( song_node * head, char * songName, char * artistName);//Removes a song and returns the node. Note: The node is not freed as a result of this function.
 song_node * freeNodes( song_node * head );//Frees all the node in the list.
