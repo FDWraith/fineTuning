@@ -1,4 +1,5 @@
 typedef struct song_node{ char name[256]; char artist[256]; struct song_node * next;} song_node;
+char * lowerString( char * str);//Lowercases all the characters in a string
 song_node * insert_front( song_node * current, char * name, char * art);//Creates a new node and inserts it in the front. Returns the resultant list.
 song_node * insert( song_node * current, char * name, char * art);//Creates a new node and inserts it in the proper place (sorted by alphabeta according to artist). Returns resultant list.
 void print_list( song_node * head);//Prints out the list

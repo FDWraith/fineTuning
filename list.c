@@ -18,8 +18,8 @@ char * lowerString(char * str){
 }
 
 song_node * insert_front( song_node *current, char *n, char *art){
-  n = lowerString(n);
-  art = lowerString(art);
+  strcpy(lowerString(n), n);
+  strcpy(lowerString(art), art);
   song_node * newNode = (song_node *)malloc( sizeof(song_node) );
   //(*newNode).name = *n;
   strcpy( (*newNode).name, n);
@@ -30,8 +30,8 @@ song_node * insert_front( song_node *current, char *n, char *art){
 }
 
 song_node * insert( song_node *current, char *n, char *art){
-  n = lowerString(n);
-  art = lowerString(art);
+  strcpy(lowerString(n), n);
+  strcpy(lowerString(art), art);
   song_node * newNode = (song_node *)malloc( sizeof(song_node) );
   //(*newNode).name = *n;
   strcpy( (*newNode).name, n);
@@ -40,6 +40,11 @@ song_node * insert( song_node *current, char *n, char *art){
   song_node * frs = current;
   while( strcmp( (*current).artist, (*newNode).artist ) <= 0 ){
     current = (*current).next;
+  }
+  if( strcmp( (*current).artist, (*newNode).artist ) == 0){
+    while( strcmp( (*current).name, (*newNode).name) <= 0 ){
+      current = (*current).next;
+    }
   }
   song_node * temp = (*current).next;
   (*current).next = newNode;
@@ -57,7 +62,7 @@ void print_list( song_node * head){
 }
 
 song_node * findSong( song_node * head, char * songName){
-  songName = lowerString(songName);
+  strcpy( lowerString(songName), songName);
   while( head != 0){
     if( strcmp( songName, (*head).name ) == 0){
       return head;
@@ -65,12 +70,12 @@ song_node * findSong( song_node * head, char * songName){
       head = (*head).next;
     }
   }
-  printf("Song Not Found\n");
+  printf("Song Not Found in List\n");
   return 0;//Cannot be found.
 }
 
 song_node * findArtist( song_node * head, char * artistName ){
-  artistName = lowerString(artistName);
+  strcpy( lowerString(artistName), artistName);
   while( head != 0){
     if( strcmp( artistName, (*head).artist ) == 0){
       return head;
@@ -78,7 +83,7 @@ song_node * findArtist( song_node * head, char * artistName ){
       head = (*head).next;
     }
   }
-  printf("Artist Not Found\n");
+  printf("Artist Not Found in List\n");
   return 0;
 }
 
@@ -116,7 +121,7 @@ song_node * removeSong( song_node * head, char * songName ){
     printf("You're in the wrong neighborhood, kid\n");
     return 0;
   }else{
-    songName = lowerString(songName);
+    strcpy(lowerString(songName), songName);
     if( strcmp( (*((*head).next)).name, songName) == 0 ){
       song_node *temp = (*head).next;
       (*head).next = (*temp).next;
