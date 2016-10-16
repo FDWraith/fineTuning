@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 typedef struct song_node{
   char name[256];
@@ -11,7 +12,7 @@ typedef struct song_node{
 char * lowerString(char * str){
   int i = 0;
   for(;i<strlen(str);i++){
-    str[i] = toLower(str[i]);
+    str[i] = tolower(str[i]);
   }
   return str;
 }
@@ -37,7 +38,7 @@ song_node * insert( song_node *current, char *n, char *art){
   //(*newNode).artist = *art;
   strcpy( (*newNode).artist, art);
   song_node * frs = current;
-  while( strcmr( (*current).artist, (*newNode).artist ) <= 0 ){
+  while( strcmp( (*current).artist, (*newNode).artist ) <= 0 ){
     current = (*current).next;
   }
   song_node * temp = (*current).next;
@@ -58,7 +59,7 @@ void print_list( song_node * head){
 song_node * findSong( song_node * head, char * songName){
   songName = lowerString(songName);
   while( head != 0){
-    if( strcmr( songName, (*head).name ) == 0){
+    if( strcmp( songName, (*head).name ) == 0){
       return head;
     }else{
       head = (*head).next;
@@ -71,7 +72,7 @@ song_node * findSong( song_node * head, char * songName){
 song_node * findArtist( song_node * head, char * artistName ){
   artistName = lowerString(artistName);
   while( head != 0){
-    if( strcmr( artistName, (*head).artist ) == 0){
+    if( strcmp( artistName, (*head).artist ) == 0){
       return head;
     }else{
       head = (*head).next;
@@ -116,8 +117,8 @@ song_node * removeSong( song_node * head, char * songName ){
     return 0;
   }else{
     songName = lowerString(songName);
-    if( strcmr( (*((*head).next)).name, songName) == 0 ){
-      song_node temp = (*head).next;
+    if( strcmp( (*((*head).next)).name, songName) == 0 ){
+      song_node *temp = (*head).next;
       (*head).next = (*temp).next;
       return temp;
     }else{
