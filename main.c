@@ -19,12 +19,13 @@ int main(){
   //strcpy(t1->artist, a1);
   song_node * t1 = insert_front(0, s1, a1);
   t1 = insert_front(t1, s2, a2);
-  t1 = insert_front(t1, s3, a3);
+  //t1 = insert_front(t1, s3, a3);
   print_list(t1);
   printf("print t1 complete\n");
   //testing insert
   printf("Testing Insert\n");
   t1 = insert(t1, s3, a3);
+  printf("Insertion 1 complete\n");
   print_list(t1);
   t1 = insert(t1, s4, a4);
   print_list(t1);
