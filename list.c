@@ -20,7 +20,7 @@ char * lowerString(char * str){
 song_node * insert_front( song_node *current, char *n, char *art){
   strcpy(lowerString(n), n);
   strcpy(lowerString(art), art);
-  song_node * newNode = (song_node *)malloc( sizeof(song_node) );
+  song_node * newNode = (song_node *)calloc(1, sizeof(song_node) );
   //(*newNode).name = *n;
   strcpy( (*newNode).name, n);
   //(*newNode).artist = *art;
@@ -30,34 +30,44 @@ song_node * insert_front( song_node *current, char *n, char *art){
 }
 
 song_node * insert( song_node *current, char *n, char *art){
+  printf("breakpoint 0");
   strcpy(lowerString(n), n);
   strcpy(lowerString(art), art);
-  song_node * newNode = (song_node *)malloc( sizeof(song_node) );
+  song_node * newNode = (song_node *)calloc(1, sizeof(song_node) );
   //(*newNode).name = *n;
+    printf("breakpoint .5");
   strcpy( (*newNode).name, n);
   //(*newNode).artist = *art;
   strcpy( (*newNode).artist, art);
   song_node * frs = current;
+  printf("breakpoint 1");
   while( strcmp( (*current).artist, (*newNode).artist ) <= 0 ){
     current = (*current).next;
   }
+  printf("breakpoint 2");
   if( strcmp( (*current).artist, (*newNode).artist ) == 0){
+    printf("breakpoint 3");
     while( strcmp( (*current).name, (*newNode).name) <= 0 ){
       current = (*current).next;
     }
   }
+  printf("breakpoint 4");
   song_node * temp = (*current).next;
   (*current).next = newNode;
   (*newNode).next = temp;
+  printf("breakpoint 5");
   return frs;
 }
 
 void print_list( song_node * head){
   printf("List of Songs:\n");
-  while(head != 0){
-    printf("\t[%s] by %s,\n", (*head).name, (*head).artist);
+  while(head){
+    printf("\t[%s] by %s,", (*head).name, (*head).artist);
+    printf("Next:[%p]\n",(*head).next);
     head = (*head).next;
+    printf("hi%lu\n", head);
   }
+  
 }
 
 song_node * findSong( song_node * head, char * songName){
