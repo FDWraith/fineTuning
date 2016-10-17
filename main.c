@@ -35,7 +35,10 @@ int main(){
   printf("Testing findArtist\n");
   searchResult = findArtist(t1, a4);
   printf("\t[%s] by %s\n", (*searchResult).name, (*searchResult).artist);
+  printf("Testing randomNode\n");
+  song_node * rndNode = randomNode(t1);
+  printf("\t[%s] by %s\n", (*rndNode).name, (*rndNode).artist);
+  free(rndNode);
   
-
   return 0;
 }
