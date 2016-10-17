@@ -17,22 +17,25 @@ int main(){
 
   //strcpy(t1->name, s1);
   //strcpy(t1->artist, a1);
+  printf("Beginning Testing Sequence\n");
   song_node * t1 = insert_front(0, s1, a1);
-  t1 = insert_front(t1, s2, a2);
-  //t1 = insert_front(t1, s3, a3);
   print_list(t1);
-  printf("print t1 complete\n");
+  printf("Testing Insert_Front\n");
+  t1 = insert_front(t1, s2, a2);
+  print_list(t1);
   //testing insert
   printf("Testing Insert\n");
   t1 = insert(t1, s3, a3);
-  printf("Insertion 1 complete\n");
   print_list(t1);
   t1 = insert(t1, s4, a4);
   print_list(t1);
+  printf("Testing findSong\n");
+  song_node * searchResult = findSong(t1,s3);
+  printf("\t[%s] by %s\n", (*searchResult).name, (*searchResult).artist);
+  printf("Testing findArtist\n");
+  searchResult = findArtist(t1, a4);
+  printf("\t[%s] by %s\n", (*searchResult).name, (*searchResult).artist);
+  
 
-  //testing 
-
-  //testing
-
-  return 21;
+  return 0;
 }
