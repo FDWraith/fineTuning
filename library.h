@@ -1,3 +1,5 @@
+#include "list.h"
+
 typedef struct library{
   song_node * table[26];
 } library;

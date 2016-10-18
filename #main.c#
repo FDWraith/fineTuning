@@ -4,6 +4,7 @@
 
 #include "library.h"
 
+
 int main(){
   //testing insert_front
   char s1[256], s2[256], s3[256], s4[256], a1[256], a2[256], a3[256], a4[256];
@@ -39,7 +40,7 @@ int main(){
   printf("Testing randomNode\n");
   song_node * rndNode = randomNode(t1);
   printf("\t[%s] by %s\n", (*rndNode).name, (*rndNode).artist);
-  //free(rndNode);
-  print_list(t1);
+  free(rndNode);
+  
   return 0;
 }

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <time.h>
 
 typedef struct song_node{
   char name[256];
@@ -105,7 +106,10 @@ int listLength( song_node * head){
 
 song_node * randomNode( song_node * head){
   int len = listLength(head);
-  int r = (int)(rand()) * len;
+  sranddev();
+  int r = (int)(rand() % len);
+  //printf("R is:[%d]\n",r);
+  //printf("Len is [%d]\n",len);
   while( r != 0 && head != 0){
     r--;
     head = (*head).next;
