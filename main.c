@@ -51,14 +51,19 @@ int main(){
   print_list(t1);
   freeNodes(t1);
   printf("Testing if t1 is null:[%d]\n", t1 == 0);
+
+
   //library testing begins:
   //extra songs for testing
-  char s5[256], s6[256], a5[256], a6[256];
+  char s5[256], s6[256], s7[256], a5[256], a6[256], a7[256];
   strcpy(s5, "Grey");
   strcpy(s6, "A Bella!");
+  strcpy(s7, "DRG");
   strcpy(a5, "Ed Carlsen");
   strcpy(a6, "M2U");
+  strcpy(a7, "Ani");
   library * t2 = (library *)calloc(1,sizeof(library));
+
   //testing add
   printf("Testing addSong\n");
   addSong(t2, s5, a5);
@@ -71,7 +76,9 @@ int main(){
   addSong(t2, s3, a3);
   addSong(t2, s4, a4);
   addSong(t2, s6, a6);
+  addSong(t2, s7, a7);
   printLibrary(t2);
+
   //testing other prints
   printf("Testing searchSong\n");
   printf("Searching for:[%s]\n",s1);
