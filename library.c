@@ -17,7 +17,7 @@ void addSong( library * lib, char * songName, char * artistName){
   if( firstChar < 97 || firstChar > 122){
     printf("INVALID artistName\n");
   }else{
-    printf("Pointer to first Node:[%p]\n",(*lib).table[firstChar-97]);
+    //printf("Pointer to first Node:[%p]\n",(*lib).table[firstChar-97]);
     (*lib).table[firstChar - 97] = insert( (*lib).table[firstChar - 97], songName, artistName);
     //print_list( result);
     //print_list( (*lib).table[firstChar - 97] );
@@ -82,8 +82,10 @@ void printArtist( library * lib, char * artistName ){
 void printLibrary( library * lib ){
   char l = 97;
   for(;l<123;l++){
-    printf("Letter '%c' List:\n",l);
-    printLetter( lib, l);
+    if( (*lib).table[l-97] != 0){
+      printf("Letter '%c' List:\n",l);
+      printLetter( lib, l);
+    }
   }
 }
 
@@ -102,11 +104,12 @@ void shuffleList( library * lib ){
 void deleteSong( library * lib, char * songName, char * artistName){
   int i = 0;
   for(;i<26;i++){
-    song_node * removeResult = removeSong( (*lib).table[i], songName, artistName);
-    if(removeResult != 0){
-      free(removeResult);
+    //printf("Issue with letter: %c\n", i + 97);
+    if( (*lib).table[i] != 0 ){
+      (*lib).table[i] = removeSong( (*lib).table[i], songName, artistName);
     }
   }
+  //printf("Completion\n");
 }
 
 void deleteLibrary( library * lib ){

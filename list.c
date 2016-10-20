@@ -31,8 +31,8 @@ song_node * insert_front( song_node *current, char *n, char *art){
 }
 
 song_node * insert( song_node *current, char *n, char *art){
-  strcpy(lowerString(n), n);
-  strcpy(lowerString(art), art);
+  strcpy(n, lowerString(n));
+  strcpy(art, lowerString(art));
   song_node * newNode = (song_node *)calloc(1, sizeof(song_node) );
   //(*newNode).name = *n;
   strcpy( (*newNode).name, n);
@@ -86,7 +86,7 @@ song_node * findSong( song_node * head, char * songName){
 }
 
 song_node * findArtist( song_node * head, char * artistName ){
-  strcpy( lowerString(artistName), artistName);
+  strcpy( artistName, lowerString(artistName));
   while( head != 0){
     if( strcmp( artistName, (*head).artist ) == 0){
       return head;
@@ -131,7 +131,7 @@ song_node * randomNode( song_node * head){
 void removeNode( song_node * chosen ){
   //not sure how to do this one.
 }
-
+/*
 song_node * removeSong( song_node * head, char * songName, char * artistName ){
   if( head == 0){
     //printf("You're in the wrong neighborhood, kid\n");
@@ -158,6 +158,28 @@ song_node * removeSong( song_node * head, char * songName, char * artistName ){
         return removeSong( (*head).next, songName, artistName );
       }
     }
+  }
+}
+*/
+song_node * removeSong( song_node * head, char * songName, char * artistName ){
+  strcpy(artistName, lowerString(artistName) );
+  if( strcmp( (*head).name, songName ) == 0 && strcmp( (*head).artist, artistName ) ){
+    song_node * temp = (*head).next;
+    free(head);
+    //head = temp;
+    return temp;
+  }else{
+    song_node * current = head;
+    while( (*current).next != 0 ){
+      if( strcmp( (*(*current).next).name, songName ) == 0 && strcmp( (*(*current).next).artist, artistName) == 0 ){
+        song_node * temp = (*current).next;
+        (*current).next = (*temp).next;
+        free(temp);
+        return head;
+      }
+      current = (*current).next;
+    }
+    return head;
   }
 }
 

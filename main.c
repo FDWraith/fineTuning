@@ -42,6 +42,11 @@ int main(){
   printf("\t[%s] by %s\n", (*rndNode).name, (*rndNode).artist);
   //free(rndNode);
   print_list(t1);
+  printf("Testing removeNode\n");
+  print_list(t1);
+  printf("Removing:[%s] by %s\n",s1,a1);
+  t1 = removeSong(t1, s1, a1);
+  print_list(t1);
   //library testing begins:
   //extra songs for testing
   char s5[256], s6[256], a5[256], a6[256];
