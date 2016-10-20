@@ -107,7 +107,7 @@ void deleteSong( library * lib, char * songName, char * artistName){
     //printf("Issue with letter: %c\n", i + 97);
     if( (*lib).table[i] != 0 ){
       song_node * temp = removeSong( (*lib).table[i], songName, artistName);
-      print_list(temp);
+      //print_list(temp);
       (*lib).table[i] = temp;
     }
   }

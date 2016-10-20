@@ -162,11 +162,13 @@ song_node * removeSong( song_node * head, char * songName, char * artistName ){
 }
 */
 song_node * removeSong( song_node * head, char * songName, char * artistName ){
-  strcpy(artistName, lowerString(artistName) );
-  if( strcmp( (*head).name, songName ) == 0 && strcmp( (*head).artist, artistName ) ){
+  artistName = strcpy(artistName, lowerString(artistName) );
+  songName = strcpy(songName, lowerString(songName) );
+  //printf("Song: [%s] by %s\n", songName, artistName);
+  //printf("Song: [%s] by %s\n", (*head).name, (*head).artist);
+  if( strcmp( (*head).name, songName ) == 0 && strcmp( (*head).artist, artistName ) == 0 ){
+    //printf("Was here\n");
     song_node * temp = (*head).next;
-    free(head);
-    //head = temp;
     return temp;
   }else{
     song_node * current = head;
