@@ -139,13 +139,15 @@ song_node * removeSong( song_node * head, char * songName, char * artistName ){
   }else{
     strcpy(lowerString(songName), songName);
     strcpy(lowerString(artistName), artistName);
-    if( (*head).next == 0){
-      if( (strcmp( (*head).name, songName) == 0) && (strcmp( (*head).artist, artistName) == 0 ) ){
-        song_node * temp = head;
+    if( (strcmp( (*head).name, songName) == 0) && (strcmp( (*head).artist, artistName) == 0 ) ){
+      if( (*head).next == 0){
+        song_node *temp = head;
         head = 0;
         return temp;
       }else{
-        return 0;
+        song_node *temp = head;
+        head = (*temp).next;
+        return temp;
       }
     }else{
       if( (strcmp( (*((*head).next)).name, songName) == 0) && (strcmp( (*(*head).next).artist, artistName) == 0 ) ){
