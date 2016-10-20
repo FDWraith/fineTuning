@@ -7,6 +7,7 @@
 
 int main(){
   //testing insert_front
+  srand(time(NULL));
   char s1[256], s2[256], s3[256], s4[256], a1[256], a2[256], a3[256], a4[256];
   strcpy(s1, "Shards of Light");
   strcpy(s2, "Fluquor");
@@ -49,10 +50,9 @@ int main(){
   print_list(t1);
   printf("Testing freeNodes\n");
   print_list(t1);
-  freeNodes(t1);
+  t1 = freeNodes(t1);
   printf("Testing if t1 is null:[%d]\n", t1 == 0);
-
-
+  
   //library testing begins:
   //extra songs for testing
   char s5[256], s6[256], s7[256], a5[256], a6[256], a7[256];
@@ -97,11 +97,17 @@ int main(){
   printLetter(t2, 'o');
   printLetter(t2, 'z');
   printf("Testing printArtist\n");
-  printArtist(t2, a3);
+  printArtist(t2, a7);
   //printArtist(t2, "Ed Carlsen");
   //printArtist(t2, "Ani");
   //printArtist(t2, "AAAAAAAAAHGGGGGGGGGGGGGGG");
-  
-
+  printf("Testing shuffleList\n");
+  shuffleList(t2);
+  printf("Testing deleteLibrary\n");
+  deleteLibrary(t2);
+  //printf("If t2 == 0:[%d]\n", t2 == 0);
+  printf("Printing out Library:\n");
+  printLibrary(t2);
+  printf("Printing complete. Confirm it is empty\n");
   return 0;
 }

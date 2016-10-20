@@ -73,7 +73,7 @@ void printArtist( library * lib, char * artistName ){
   }else{
     printf("Songs by %s:\n",artistName);
     while( searchResult != 0 && strcmp( (*searchResult).artist, artistName ) == 0){
-      printf("\t[%s],\n", (*searchResult).name );
+      printf("\t[%s]\n", (*searchResult).name );
       searchResult = (*searchResult).next;
     }
   }
@@ -92,11 +92,20 @@ void printLibrary( library * lib ){
 //NOTE: May come back to this to make it more random.
 void shuffleList( library * lib ){
   int i =0;
-  printf("Beginning of Random Songs:");
-  for(;i<26;i++){
-    song_node * rndNode = randomNode( (*lib).table[ i ]);
-    if( rndNode != 0) {
-      printf("\t[%s] by %s\n", (*rndNode).name, (*rndNode).artist);
+  int j =0;
+  //srand(time(NULL));
+  //srand(rand());
+  printf("Beginning of Random Songs:\n");
+  for(;i<3;i++){
+    j = (int)(rand() % 26);
+    //printf("J:%d\n",j);
+    if((*lib).table[j] != 0){
+      song_node * rndNode = randomNode( (*lib).table[j]);
+      if( rndNode != 0) {
+        printf("\t[%s] by %s\n", (*rndNode).name, (*rndNode).artist);
+      }
+    }else{
+      i--;
     }
   }
 }
@@ -117,6 +126,6 @@ void deleteSong( library * lib, char * songName, char * artistName){
 void deleteLibrary( library * lib ){
   int i =0;
   for(;i<26;i++){
-    freeNodes( (*lib).table[i] );
+    (*lib).table[i] = freeNodes( (*lib).table[i] );
   }
 }

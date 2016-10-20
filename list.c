@@ -110,7 +110,7 @@ int listLength( song_node * head){
 song_node * randomNode( song_node * head){
   int len = listLength(head);
   //sranddev();
-  srand(time(NULL));
+  //srand(time(NULL));
   int r = (int)(rand() % len);
   //  int r = (int)(rand() % len);
   //printf("R is:[%d]\n",r);
@@ -121,7 +121,7 @@ song_node * randomNode( song_node * head){
   }//while loop ends, r must be 0
 
   if(head == 0){
-    printf("You have an error on your hands\n");
+    //printf("You have an error on your hands\n");
     return 0;
   }else{
     return head;
@@ -186,11 +186,10 @@ song_node * removeSong( song_node * head, char * songName, char * artistName ){
 }
 
 song_node * freeNodes( song_node * head ){
-  if( head != 0){
+  while(head){
+    song_node * temp = (*head).next;
     free(head);
-    head = freeNodes( (*head).next );
-  }else{
-    free(head);
+    head = temp;
   }
   return head;
 }
