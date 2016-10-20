@@ -134,17 +134,27 @@ void removeNode( song_node * chosen ){
 
 song_node * removeSong( song_node * head, char * songName, char * artistName ){
   if( head == 0){
-    printf("You're in the wrong neighborhood, kid\n");
+    //printf("You're in the wrong neighborhood, kid\n");
     return 0;
   }else{
     strcpy(lowerString(songName), songName);
     strcpy(lowerString(artistName), artistName);
-    if( (strcmp( (*((*head).next)).name, songName) == 0) && (strcmp( (*(*head).next).artist, artistName) == 0 ) ){
-      song_node *temp = (*head).next;
-      (*head).next = (*temp).next;
-      return temp;
+    if( (*head).next == 0){
+      if( (strcmp( (*head).name, songName) == 0) && (strcmp( (*head).artist, artistName) == 0 ) ){
+        song_node * temp = head;
+        head = 0;
+        return temp;
+      }else{
+        return 0;
+      }
     }else{
-      return removeSong( (*head).next, songName, artistName );
+      if( (strcmp( (*((*head).next)).name, songName) == 0) && (strcmp( (*(*head).next).artist, artistName) == 0 ) ){
+        song_node *temp = (*head).next;
+        (*head).next = (*temp).next;
+        return temp;
+      }else{
+        return removeSong( (*head).next, songName, artistName );
+      }
     }
   }
 }

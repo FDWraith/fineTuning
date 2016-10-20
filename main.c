@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "library.h"
 
@@ -71,13 +72,20 @@ int main(){
   printf("Searching for:[%s]\n",a3);
   searchResult = searchArtist(t2, a3);
   printf("Printing out node: songName[%s], artistName[%s]\n", (*searchResult).name, (*searchResult).artist );
+  printf("Testing deleteSong\n");
+  printf("Deleting:[%s] by %s\n",s1,a1);
+  deleteSong(t2,s1,a1);
+  printLetter(t2, tolower(a1[0]));
   printf("Testing printLetter\n");
   printLetter(t2, 'a');
   printLetter(t2, 'o');
   printLetter(t2, 'z');
   printf("Testing printArtist\n");
+  printArtist(t2, a3);
   //printArtist(t2, "Ed Carlsen");
   //printArtist(t2, "Ani");
   //printArtist(t2, "AAAAAAAAAHGGGGGGGGGGGGGGG");
+  
+
   return 0;
 }

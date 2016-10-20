@@ -37,16 +37,16 @@ song_node * searchSong( library * lib, char * songName){
 }
 
 song_node * searchArtist( library * lib, char * artistName ){
-  printf("Start\n");
-  printf("ArtistName:[%s]\n",artistName);
+  //printf("Start\n");
+  //printf("ArtistName:[%s]\n",artistName);
   artistName = strcpy( artistName, lowerString(artistName) );//breaking here for some reason?
-  printf("First\n");
+  //printf("First\n");
   char firstChar = artistName[0];
-  printf("Second\n");
+  //printf("Second\n");
   if( firstChar < 97 || firstChar > 122){
     printf("INVALID artistName[%s]\n",artistName);
   }else{
-    printf("Breakpoint\n");
+    //printf("Breakpoint\n");
     song_node * searchResult = findArtist( (*lib).table[ firstChar - 97 ], artistName );
   //returns searchResult;
     if(searchResult == 0){
@@ -65,13 +65,14 @@ void printLetter( library * lib, char letter ){
 }
 
 void printArtist( library * lib, char * artistName ){
+  //printf("breakpoint\n");
   song_node * searchResult = searchArtist( lib, artistName );
-  print_list(searchResult);
+  //print_list(searchResult);
   if( searchResult == 0 ){
     return;//error statement in previous part.
   }else{
     printf("Songs by %s:\n",artistName);
-    while( strcmp( (*searchResult).artist, artistName ) == 0){
+    while( searchResult != 0 && strcmp( (*searchResult).artist, artistName ) == 0){
       printf("\t[%s],\n", (*searchResult).name );
       searchResult = (*searchResult).next;
     }
