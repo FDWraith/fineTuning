@@ -1,3 +1,3 @@
 run:main.c
-	gcc main.c list.c -o test
+	gcc main.c list.c library.c -o test
 	./test

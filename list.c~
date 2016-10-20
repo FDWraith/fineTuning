@@ -106,10 +106,8 @@ int listLength( song_node * head){
 
 song_node * randomNode( song_node * head){
   int len = listLength(head);
-  //sranddev();
-  srand(time(NULL));
+  sranddev();
   int r = (int)(rand() % len);
-  //  int r = (int)(rand() % len);
   //printf("R is:[%d]\n",r);
   //printf("Len is [%d]\n",len);
   while( r != 0 && head != 0){

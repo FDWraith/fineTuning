@@ -41,30 +41,5 @@ int main(){
   printf("\t[%s] by %s\n", (*rndNode).name, (*rndNode).artist);
   //free(rndNode);
   print_list(t1);
-  //library testing begins:
-  //extra songs for testing
-  char s5[256], s6[256], a5[256], a6[256];
-  strcpy(s5, "Grey");
-  strcpy(s6, "A Bella!");
-  strcpy(a5, "Ed Carlsen");
-  strcpy(a6, "M2U");
-  library * t2 = (library *)calloc(1,sizeof(library));
-  //testing add
-  addSong(t2, s5, a5);
-  printLibrary(t2);
-  //adding the rest
-  addSong(t2, s1, a1);
-  addSong(t2, s2, a2);
-  addSong(t2, s3, a3);
-  addSong(t2, s4, a4);
-  addSong(t2, s6, a6);
-  printLibrary(t2);
-  //testing other prints
-  printLetter(t2, 'a');
-  printLetter(t2, 'o');
-  printLetter(t2, 'z');
-  printArtist(t2, "Ed Carlsen");
-  printArtist(t2, "Ani");
-  printArtist(t2, "AAAAAAAAAHGGGGGGGGGGGGGGG");
   return 0;
 }
