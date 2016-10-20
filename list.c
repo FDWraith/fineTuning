@@ -38,6 +38,9 @@ song_node * insert( song_node *current, char *n, char *art){
   strcpy( (*newNode).name, n);
   //(*newNode).artist = *art;
   strcpy( (*newNode).artist, art);
+  if(current == 0){
+    return newNode;
+  }
   song_node * frs = current;
   while( (*current).next && strcmp( (*current).artist, (*newNode).artist ) <= 0 ){
     current = (*current).next;

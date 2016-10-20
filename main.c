@@ -50,9 +50,12 @@ int main(){
   strcpy(a6, "M2U");
   library * t2 = (library *)calloc(1,sizeof(library));
   //testing add
+  printf("Testing addSong\n");
   addSong(t2, s5, a5);
+  printf("Added song, now printing library:\n");
   printLibrary(t2);
   //adding the rest
+  printf("Adding additional songs\n");
   addSong(t2, s1, a1);
   addSong(t2, s2, a2);
   addSong(t2, s3, a3);
@@ -60,11 +63,21 @@ int main(){
   addSong(t2, s6, a6);
   printLibrary(t2);
   //testing other prints
+  printf("Testing searchSong\n");
+  printf("Searching for:[%s]\n",s1);
+  searchResult = searchSong(t2, s1);
+  printf("Printing out node: songName[%s], artistName[%s]\n", (*searchResult).name, (*searchResult).artist );
+  printf("Testing searchArtist\n");
+  printf("Searching for:[%s]\n",a3);
+  searchResult = searchArtist(t2, a3);
+  printf("Printing out node: songName[%s], artistName[%s]\n", (*searchResult).name, (*searchResult).artist );
+  printf("Testing printLetter\n");
   printLetter(t2, 'a');
   printLetter(t2, 'o');
   printLetter(t2, 'z');
-  printArtist(t2, "Ed Carlsen");
-  printArtist(t2, "Ani");
-  printArtist(t2, "AAAAAAAAAHGGGGGGGGGGGGGGG");
+  printf("Testing printArtist\n");
+  //printArtist(t2, "Ed Carlsen");
+  //printArtist(t2, "Ani");
+  //printArtist(t2, "AAAAAAAAAHGGGGGGGGGGGGGGG");
   return 0;
 }
