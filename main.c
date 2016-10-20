@@ -47,6 +47,10 @@ int main(){
   printf("Removing:[%s] by %s\n",s1,a1);
   t1 = removeSong(t1, s1, a1);
   print_list(t1);
+  printf("Testing freeNodes\n");
+  print_list(t1);
+  freeNodes(t1);
+  printf("Testing if t1 is null:[%d]\n", t1 == 0);
   //library testing begins:
   //extra songs for testing
   char s5[256], s6[256], a5[256], a6[256];
